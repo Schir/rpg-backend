@@ -54,6 +54,7 @@ struct item
     enum type
     {
         CONSUMABLE,
+        CONSUMABLE_FOOD, //breaking this one out specifically in case I want to do something crunchy with it.
         EQUIPMENT_HEAD,
         EQUIPMENT_HAND,
         EQUIPMENT_ARMOR,
@@ -74,6 +75,7 @@ struct spell
 struct job
 {
     string jobName;
+    int level;
     enum xpCurve
     {
         SLOW,
@@ -82,14 +84,17 @@ struct job
     };
     enum jobTypes
     {
-        FIGHTER,
-        WIZARD,
-        MAGIC_DOCTOR,
-        THIEF,
-        TIME_TRAVELER, 
-        CHEMIST,
-        MUSICIAN,
-        CHIMERA,
+        FIGHTER, //better at avoiding hits, good with most weapons
+        WIZARD, //terrible at avoiding hits, good at identifying traps, can cast all the cool spells.
+        MAGIC_DOCTOR, //man that piece of worldbuilding from dungeon meshi was neat. i should add a bmi stat to make it easier to tell if a revive spell will work. there's probably some interesting subsystems i could put in because of it too.
+        THIEF, //good at opening chests and not much else. would be a crack shot if you could find a gun...
+        TRAVELER, //all-rounder. can fight and cast spells. all of their spells are in other languages
+        CHEMIST, //i am not smart enough to implement !mix but it would be sick
+        MUSICIAN, //can buff the party and debuff the enemy and use the power of rock and roll
+        SAMURAI, //samurai can equip swords to both hand slots and their head slot.
+        CHIMERA, //if i could figure out how to make it work i'd say this one can absorb monsters like it's SaGa.
+        CALCULATOR, //can directly modify memory values once a turn. insanely strong if you know what you're doing. terrible otherwise.
+        //all of the ones below this point are enemy classes
         MONSTER_WEAK,
         MONSTER_AVERAGE,
         MONSTER_STRONG,
@@ -105,8 +110,7 @@ struct character
 {
     int id;
     string characterName;
-    job characterJob;
-    int level;
+    job[] characterJob;
     int hp;
     int xp;
     int muscle;
@@ -131,7 +135,7 @@ struct party
 struct encounter
 {
     party[] encounter;
-    bool enemy; //enemy: true. player: false. this is just to tell the game which side the units are on.
+    bool enemy; //enemy: true. player: false. this is just to tell the game which side the units are on when setting up the fight.
 }
 
 //container for processing actions in combat
