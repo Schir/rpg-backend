@@ -64,7 +64,7 @@ struct item
     effect itemEffect;
 }
 
-//struct for spells. spell's level and effect. might want to move element over to the generic effect tab
+//struct for spells. spells are just a level and effect. 
 struct spell
 {
     int spellLevel;
