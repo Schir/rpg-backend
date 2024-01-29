@@ -108,6 +108,7 @@ struct job
         SAMURAI, //samurai can equip swords to both hand slots and their head slot.
         CHIMERA, //if i could figure out how to make it work i'd say this one can absorb monsters like it's SaGa.
         CALCULATOR, //can directly modify memory values once a turn. insanely strong if you know what you're doing. terrible otherwise.
+        CHEF, //can make food out of monsters. handy to have in longer expeditions.
         //all of the ones below this point are enemy classes
         MONSTER_WEAK,
         MONSTER_AVERAGE,
@@ -136,6 +137,7 @@ struct character
     int constitution;
     int nimbleness;
     int luck;
+    int bmi;
     item[] inventory;
     spell[] spellsKnown;
     int[] spellSlots;
