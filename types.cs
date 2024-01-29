@@ -51,15 +51,29 @@ struct item
 {
     int quantity;
     int cost;
-    enum type
+    enum itemType
     {
         CONSUMABLE,
         CONSUMABLE_FOOD, //breaking this one out specifically in case I want to do something crunchy with it.
-        EQUIPMENT_HEAD,
-        EQUIPMENT_HAND,
+        EQUIPMENT_WEAPON,
         EQUIPMENT_ARMOR,
         KEY
     };
+    enum equipType
+    {
+        NOT_EQUIPMENT,
+        SWORD,
+        KATANA,
+        BOW,
+        STAFF,
+        BOOK,
+        GUN,
+        MONSTER_WEAPON,
+        LIGHT_ARMOR,
+        MEDIUM_ARMOR,
+        HEAVY_ARMOR,
+        HELMET,
+    }
     bool cursed;
     bool identified;
     effect itemEffect;
@@ -102,6 +116,10 @@ struct job
         MID_LEVEL_DUNGEON_MANAGER,
         HIGH_POWERED_DUNGEON_EXECUTIVE
     }
+    Dictionary<int, spell> spellsToLearn;
+    Dictionary<int, int[]> newSpellSlotsPerLevel;
+    int[] statRequirements;
+    item.type[] 
     //a bunch more things tbd
 }
 
