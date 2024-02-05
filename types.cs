@@ -7,12 +7,12 @@ struct tooltip
 }
 
 //generic construction for effects. item effects, spell effects, status conditions, duration
-struct effect
+class Effect
 {
     int id;
     int effectID;
     string name;
-    string alias;
+    string alias; 
     tooltip whatItDoes;
     enum element
     {
@@ -43,6 +43,7 @@ struct effect
         ENCOUNTER
     };
     int duration;
+    public virtual Effect(){}
 }
 
 //generic construction for items. equipment, keys, consumables, 
@@ -76,14 +77,14 @@ struct item
     }
     bool cursed;
     bool identified;
-    effect itemEffect;
+    Effect itemEffect;
 }
 
 //struct for spells. spells are just a level and effect. 
 struct spell
 {
     int spellLevel;
-    effect spellEffect;
+    Effect spellEffect;
 }
 
 struct job
@@ -92,9 +93,7 @@ struct job
     int level;
     enum xpCurve
     {
-        SLOW,
-        NORMAL,
-        FAST
+        SLOW, NORMAL, FAST
     };
     enum jobTypes
     {
@@ -120,7 +119,15 @@ struct job
     Dictionary<int, spell> spellsToLearn;
     Dictionary<int, int[]> newSpellSlotsPerLevel;
     int[] statRequirements;
-    item.type[] 
+    enum proficiencyLevel
+    {
+        S, A, B, C, D, E, F
+    }
+    Dictionary<item.equipType, proficiencyLevel> equipmentProficiency;
+        Effect.element[] elementalWeaknesses;
+    Effect.effectType[] typeWeaknesses;
+    Effect.element[] elementalResistances;
+    Effect.effectType[] typeResistances;
     //a bunch more things tbd
 }
 
@@ -132,17 +139,18 @@ struct character
     job[] characterJob;
     int hp;
     int xp;
-    int muscle;
-    int studiousness;
-    int constitution;
-    int nimbleness;
-    int luck;
+    int strength; int strMod;
+    int intelligence; int intMod;
+    int constitution; int conMod;
+    int dexterity; int dexMod;
+    int luck; int luckMod;
     int bmi;
+    int AC;
     item[] inventory;
     spell[] spellsKnown;
     int[] spellSlots;
     item[] equipment;
-    effect[] conditions;
+    Effect[] conditions;
 }
 
 //basic grouping of units.
@@ -162,6 +170,11 @@ struct encounter
 struct action
 {
     character attacker;
-    party target;
-    effect effectToBeApplied;
+    character target;
+    Effect effectToBeApplied;
+}
+
+public void ApplyEffect(action info)
+{
+    info.effectToBeApplied.Effect(info.attacker, info.target);
 }
