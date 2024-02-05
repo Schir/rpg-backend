@@ -2,11 +2,11 @@
 //alright, we've got all the types stubbed out, let's try stubbing out the combat form
 class BattleManager
 {
-    character[] defeatedEnemies;
+    List<character> defeatedEnemies;
     party playerParty;
     encounter enemyEncounter;
     bool isEndOfEncounter;
-    action[] actionQueue;
+    List<action> actionQueue;
 
     enum battlePhase
     {
@@ -21,19 +21,32 @@ class BattleManager
     }
     battlePhase currentPhase;
 
-    
+    void addActionToQueue(action move)
+    {
+        
+    }
+
+    private void moveToNextPhase()
+    {
+
+    }
+
+    void checkEndOfEncounter()
+    {
+
+    }
 
     void ProcessEndOfEncounter()
     {
         int totalgold = 0;
         int totalXP = 0;
-        for(int i=0; i<defeatedEnemies.Length;i++)
+        for(int i=0; i<defeatedEnemies.Count;i++)
         {
             gold += defeatedEnemies[i].gold;
             totalXP += defeatedEnemies[i].xp;
         }
         int numberOfLivingPlayerPartyMembers = 0;
-        for(int i=0; i<playerParty.Length;i++)
+        for(int i=0; i<playerParty.Count;i++)
         {
             if(playerParty[i].isAlive)
             {
@@ -44,7 +57,7 @@ class BattleManager
         {
             totalgold = totalgold / numberOfLivingPlayerPartyMembers;
             totalXP = totalXP / numberOfLivingPlayerPartyMembers;
-            for(int i=0; i<playerParty.Length;i++)
+            for(int i=0; i<playerParty.Count;i++)
             {
                 if(playerParty[i].isAlive)
                 {

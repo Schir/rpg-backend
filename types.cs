@@ -138,7 +138,7 @@ struct character
 {
     int id;
     string characterName;
-    job[] characterJob;
+    List<job> characterJob;
     int hp;
     int xp;
     int gold;
@@ -150,11 +150,11 @@ struct character
     int bmi;
     int AC;
     bool isAlive;
-    item[] inventory;
-    spell[] spellsKnown;
+    List<item> inventory;
+    List<spell> spellsKnown;
     int[] spellSlots;
     item[] equipment;
-    Effect[] conditions;
+    List<Effect> conditions;
 }
 
 //basic grouping of units.
