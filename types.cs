@@ -87,6 +87,7 @@ struct spell
     Effect spellEffect;
 }
 
+[System.Serializable()]
 struct job
 {
     string jobName;
@@ -132,6 +133,7 @@ struct job
 }
 
 //basic character construction. inventory, level, gold, name, job, stats, spells, spell slots, equipped gear, statuses effecting them
+[System.Serializable()]
 struct character
 {
     int id;
@@ -139,6 +141,7 @@ struct character
     job[] characterJob;
     int hp;
     int xp;
+    int gold;
     int strength; int strMod;
     int intelligence; int intMod;
     int constitution; int conMod;
@@ -146,6 +149,7 @@ struct character
     int luck; int luckMod;
     int bmi;
     int AC;
+    bool isAlive;
     item[] inventory;
     spell[] spellsKnown;
     int[] spellSlots;
