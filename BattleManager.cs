@@ -23,7 +23,10 @@ class BattleManager
 
     void addActionToQueue(action move)
     {
-        
+        actionQueue.Add(move);
+    }
+    void processActions()
+    {
     }
 
     private void moveToNextPhase()
@@ -31,9 +34,26 @@ class BattleManager
 
     }
 
-    void checkEndOfEncounter()
+    bool checkEndOfEncounter()
     {
-
+        for (int i=0; i<enemyEncounter.encounter.Length; i++)
+        {
+            for(int j=0; j<enemyEncounter.encounter[i].party.Length;j++)
+            {
+                if(enemyEncounter.encounter[i].party[j].isAlive)
+                {
+                    return false;
+                }
+            }
+        }
+        for(int i=0; i<playerParty.Length;i++)
+        {
+            if(playerParty[i].isAlive)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     void ProcessEndOfEncounter()

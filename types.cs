@@ -175,10 +175,11 @@ struct action
 {
     character attacker;
     character target;
+    party targetParty;
     Effect effectToBeApplied;
 }
 
 public void ApplyEffect(action info)
 {
-    info.effectToBeApplied.Effect(info.attacker, info.target);
+    info.effectToBeApplied.Effect(info.attacker, info.target, info.targetParty);
 }
