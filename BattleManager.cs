@@ -8,6 +8,15 @@ class BattleManager
     bool isEndOfEncounter;
     List<action> actionQueue;
 
+    BattleManager(party player, encounter enemy)
+    {
+        playerParty = player;
+        enemyEncounter = enemy;
+        isEndOfEncounter = false;
+        actionQueue = new List<action>();
+        defeatedEnemies = new List<character>();
+        currentPhase = battlePhase.BATTLE_START;
+    }
     enum battlePhase
     {
         BATTLE_START
@@ -27,6 +36,7 @@ class BattleManager
     }
     void processActions()
     {
+        
     }
 
     private void moveToNextPhase()
