@@ -179,6 +179,56 @@ struct action
     Effect effectToBeApplied;
 }
 
+struct wall
+{
+    enum wallType
+    {
+        NONE,
+        WALL,
+        DOOR,
+        HIDDEN
+    }
+}
+enum tileEventType
+    {
+        NONE,
+        MESSAGE,
+        TREASURE,
+        FIGHT,
+        SCENE        
+    }
+
+enum encounterRate
+{
+    NONE,
+    VERY_LOW,
+    LOW,
+    MEDIUM,
+    HIGH,
+    EVERY_STEP
+}
+
+struct mapTile
+{
+    wall north;
+    wall east;
+    wall south;
+    wall west;
+    int encounterTableID;
+    tileEventType tileEvent;
+    int tileEventID;
+    encounterRate enemyRate;
+}
+
+struct dungeonMap
+{
+    mapTile[][] floorLayout;
+    bool[][] revealedTiles;
+    int dungeonID;
+    int floor;
+    encounter[] randomEncounters;
+}
+
 public void ApplyEffect(action info)
 {
     info.effectToBeApplied.Effect(info.attacker, info.target, info.targetParty);
