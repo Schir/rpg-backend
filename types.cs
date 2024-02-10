@@ -233,3 +233,32 @@ public void ApplyEffect(action info)
 {
     info.effectToBeApplied.Effect(info.attacker, info.target, info.targetParty);
 }
+
+
+
+Class Quest
+{
+    enum questState
+    {
+        UNSEEN,
+        SEEN,
+        ACTIVE,
+        ACCEPTED,
+        READY_TO_TURN_IN
+        COMPLETED,
+        FAILED
+    }
+    questState currentState;
+    abstract void CompletionRequirements(){}
+    string questDescription;
+}
+
+struct questLog
+{
+    List<Quest> log;
+}
+
+UpdateQuestLog()
+{
+
+}
