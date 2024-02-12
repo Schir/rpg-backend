@@ -12,7 +12,7 @@ public static int main()
         case gameStates.TITLE:
             drawTitle();
             int selectedOption = getTitleSelection();
-            switchTitleState(selectedOption, currentState);
+            currentState = switchTitleState(selectedOption, currentState);
             break;
         case gameStates.NEWGAME:
             playerParty = new party();
