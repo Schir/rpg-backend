@@ -1,5 +1,6 @@
 //basic tooltip construction, separated out so I can use it in menus for things besides items.
-struct tooltip
+[System.Serializable()]
+public struct tooltip
 {
     int tooltipID;
     string tooltip;
@@ -7,7 +8,8 @@ struct tooltip
 }
 
 //generic construction for effects. item effects, spell effects, status conditions, duration
-class Effect
+[System.Serializable()]
+public class Effect
 {
     int id;
     int effectID;
@@ -48,7 +50,7 @@ class Effect
 
 //generic construction for items. equipment, keys, consumables, 
 //whether it's cursed or not, whether it's been identified or not
-struct item
+public struct item
 {
     int quantity;
     int cost;
@@ -81,14 +83,14 @@ struct item
 }
 
 //struct for spells. spells are just a level and effect. 
-struct spell
+public struct spell
 {
     int spellLevel;
     Effect spellEffect;
 }
 
 [System.Serializable()]
-struct job
+public struct job
 {
     string jobName;
     int level;
@@ -134,7 +136,7 @@ struct job
 
 //basic character construction. inventory, level, gold, name, job, stats, spells, spell slots, equipped gear, statuses effecting them
 [System.Serializable()]
-struct character
+public struct character
 {
     int id;
     string characterName;
@@ -158,20 +160,21 @@ struct character
 }
 
 //basic grouping of units.
-struct party
+[System.Serializable()]
+public struct party
 {
     character[] party;
 }
 
 //encounters will be against multiple groups of enemies like in dragon quest and wizardry
-struct encounter
+public struct encounter
 {
     party[] encounter;
     bool enemy; //enemy: true. player: false. this is just to tell the game which side the units are on when setting up the fight.
 }
 
 //container for processing actions in combat
-struct action
+public struct action
 {
     character attacker;
     character target;
@@ -179,7 +182,7 @@ struct action
     Effect effectToBeApplied;
 }
 
-struct wall
+public struct wall
 {
     enum wallType
     {
@@ -208,7 +211,7 @@ enum encounterRate
     EVERY_STEP
 }
 
-struct mapTile
+public struct mapTile
 {
     wall north;
     wall east;
@@ -220,7 +223,8 @@ struct mapTile
     encounterRate enemyRate;
 }
 
-struct dungeonMap
+[System.Serializable()]
+public struct dungeonMap
 {
     mapTile[][] floorLayout;
     bool[][] revealedTiles;
@@ -235,8 +239,8 @@ public void ApplyEffect(action info)
 }
 
 
-
-Class Quest
+[System.Serializable()]
+public Class Quest
 {
     enum questState
     {
@@ -253,12 +257,12 @@ Class Quest
     string questDescription;
 }
 
-struct questLog
+public struct questLog
 {
     List<Quest> log;
 }
 
-UpdateQuestLog()
+public void UpdateQuestLog()
 {
 
 }
